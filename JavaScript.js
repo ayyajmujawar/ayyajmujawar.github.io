@@ -142,7 +142,7 @@ document.querySelectorAll(".carousel").forEach(carousel => {
     });
 });
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbyRx0bFzx9EQC3T7_SPGrj1GQYs97Sr386iNTgCqPY07oVpz5WtNjMbo2XTVYtFDjW9/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbyCxD1hEQHaFtrSN4fP38Dh_THobIg3CdgMhvxDfDM9ruFBfe2PV7wXUk4tnz3jdrKA/exec";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
