@@ -1,0 +1,448 @@
+/* =====================
+   GLOBAL RESET
+===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    color: #222;
+    background: #fff;
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.center {
+    text-align: center;
+}
+
+/* =====================
+   HEADER / NAVBAR
+===================== */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 1000;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+
+.nav {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111;
+}
+
+/* Nav Links */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+nav .nav_menu_highlight {
+    position: relative;
+    text-decoration: none;
+    color: #222;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 6px 0;
+}
+
+/* Underline Hover */
+nav .nav_menu_highlight::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background: #4da3ff;
+    transition: width 0.3s ease;
+}
+
+nav .nav_menu_highlight:hover {
+    color: #4da3ff;
+}
+
+nav .nav_menu_highlight:hover::after {
+    width: 100%;
+}
+
+/* Mobile Menu Icon */
+.menu-toggle {
+    display: none;
+    font-size: 1.9rem;
+    cursor: pointer;
+}
+
+/* =====================
+   BUTTONS
+===================== */
+.btn {
+    background: linear-gradient(135deg, #4da3ff, #1c7ed6);
+    color: #fff;
+    padding: 13px 32px;
+    border-radius: 32px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.35s ease;
+    box-shadow: 0 12px 28px rgba(77,163,255,0.35);
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 42px rgba(77,163,255,0.45);
+    filter: brightness(1.05);
+}
+
+.btn.small {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+}
+
+/* =====================
+   HERO SECTION
+===================== */
+.hero {
+    height: 100vh;
+    background:
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url("tech.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    padding-top: 72px;
+}
+
+.hero-content {
+    max-width: 640px;
+}
+
+.hero h1 {
+    font-size: 3.1rem;
+    margin-bottom: 22px;
+    line-height: 1.25;
+}
+
+.hero p {
+    font-size: 1.15rem;
+    opacity: 0.92;
+    margin-bottom: 30px;
+}
+
+/* =====================
+   SECTIONS
+===================== */
+.section {
+    padding: 100px 0;
+}
+
+.light {
+    background: #f6f8fb;
+}
+
+.section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    line-height: 1.3;
+}
+
+.section p {
+    margin-bottom: 18px;
+    max-width: 620px;
+}
+
+/* =====================
+   GRID LAYOUT
+===================== */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+    align-items: center;
+}
+
+.responsive-img {
+    width: 100%;
+    border-radius: 14px;
+}
+
+/* =====================
+   SERVICES / CARDS
+===================== */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.card {
+    background: #fff;
+    padding: 40px 35px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    transition: all 0.35s ease;
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.card p {
+    color: #555;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 28px 55px rgba(0,0,0,0.14);
+}
+
+/* =====================
+   STATS
+===================== */
+.stats {
+    background: #111;
+    color: #fff;
+    padding: 90px 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    text-align: center;
+    gap: 50px;
+}
+
+.counter {
+    font-size: 3.2rem;
+    color: #4da3ff;
+    margin-bottom: 8px;
+}
+
+/* =====================
+   LIST
+===================== */
+.list {
+    list-style: none;
+    margin-top: 25px;
+}
+
+.list li {
+    margin-bottom: 14px;
+    font-weight: 500;
+}
+
+/* =====================
+   FOOTER
+===================== */
+.footer {
+    background: #111;
+    color: #aaa;
+    text-align: center;
+    padding: 28px;
+    font-size: 0.9rem;
+}
+
+/* =====================
+   SCROLL REVEAL
+===================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.7s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =====================
+   MOBILE RESPONSIVE
+===================== */
+@media (max-width: 768px) {
+
+    body {
+        font-size: 15px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .hero h1 {
+        font-size: 2.3rem;
+    }
+
+    .section {
+        padding: 80px 0;
+    }
+
+    nav {
+        position: absolute;
+        top: 72px;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+        width: 240px;
+        padding: 25px;
+        display: none;
+        box-shadow: 0 18px 35px rgba(0,0,0,0.12);
+    }
+
+    nav.active {
+        display: flex;
+    }
+
+    nav a {
+        width: 100%;
+        padding: 12px 10px;
+    }
+
+    nav a:hover {
+        background: rgba(77,163,255,0.08);
+        padding-left: 18px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+/* =====================
+   SVG SOCIAL ICONS
+===================== */
+.footer-social {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.footer-social a {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.footer-social svg {
+    width: 18px;
+    height: 18px;
+    fill: #cbd5e1;
+    transition: fill 0.3s ease;
+}
+
+.footer-social a:hover {
+    background: #4da3ff;
+    transform: translateY(-3px);
+}
+
+.footer-social a:hover svg {
+    fill: #fff;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .footer-social {
+        justify-content: center;
+    }
+}
+
+
+.clients {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+    align-items: center;
+}
+
+.clients img {
+    width: 100%;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.clients img:hover {
+    opacity: 1;
+}
+
+
+  /* ================= STICKY ICON ================= */
+  .sticky-link {
+    position: fixed;
+    right: clamp(10px, 3vw, 20px);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 26px);
+    font-size: clamp(0.85rem, 2vw, 14px);
+    font-weight: 600;
+    letter-spacing: 0.25px;
+    text-decoration: none;
+    color: #0f172a;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    background-image:
+      linear-gradient(#ffffff, #ffffff),
+      linear-gradient(120deg, #2563eb, #6366f1, #0ea5e9, #2563eb);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    background-size: 100% 100%, 300% 300%;
+    animation: borderMove 6s linear infinite;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    white-space: nowrap;
+  }
+
+  .sticky-link:hover {
+    transform: translateY(-50%) translateX(6px);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+  }
+
+  @keyframes borderMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+  }
+
+
+
+  /* Small Mobile */
+  @media (max-width: 360px) {
+      
+    .sticky-link {
+      right: 15px;
+      bottom: 15px;
+      font-size: 0.8rem;
+      padding: 10px 16px;
+    }
+  }

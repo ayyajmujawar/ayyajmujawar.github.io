@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffee Haven</title>
+<link rel="icon" type="image/png" href="favicon.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #6f4e37;        /* dark coffee brown */
+    --secondary: #d9c3a6;      /* light cream */
+    --accent: #c69c6d;         /* caramel accent */
+    --surface: #fffaf5;
+    --background: #f7f3f0;
+    --border: #e6ded5;
+  }
+
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body { 
+    font-family:'Inter', sans-serif; 
+    background:var(--background); 
+    color:#333; 
+    line-height:1.6; 
+    overflow-x: hidden;
+  }
+  h1,h2,h3 { font-family:'Playfair Display', serif; color:var(--primary); }
+  a { text-decoration:none; color:inherit; }
+  img { max-width:100%; display:block; height:auto; }
+  button { cursor:pointer; border:none; }
+
+  /* ================= HERO ================= */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: clamp(20px, 5vw, 40px);
+    padding: clamp(40px, 8vw, 80px) clamp(20px, 5%, 5%);
+    background: linear-gradient(120deg, var(--secondary), var(--background));
+  }
+
+  .hero_content { 
+    padding-right: clamp(0px, 3vw, 20px);
+  }
+  .hero_content h1 {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    margin-bottom: clamp(15px, 3vw, 20px);
+    line-height: 1.2;
+  }
+  .hero_content p {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    margin-bottom: clamp(20px, 4vw, 30px);
+    color:#5a3e2b;
+  }
+  
+  .hero_rgt_img {
+    width: 100%;
+    max-width: clamp(250px, 40vw, 400px);
+    height: clamp(200px, 30vw, 300px);
+    background: url("Hero_Cafe.png") center / cover no-repeat;
+    border-radius: 12px;
+    animation: floatY 6s ease-in-out infinite;
+  }
+
+  @keyframes floatY {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+  }
+
+  /* ================= SERVICES ================= */
+  .services {
+    padding: clamp(60px, 10vw, 80px) clamp(20px, 5%, 5%);
+    text-align: center;
+    background: var(--background);
+  }
+
+  .services h2 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: clamp(30px, 6vw, 50px);
+    color: var(--primary);
+  }
+
+  .services-grid {
+    display: grid;
+    gap: clamp(15px, 4vw, 20px);
+    grid-template-columns: repeat(auto-fit, minmax(clamp(220px, 45vw, 260px), 1fr));
+  }
+   
+  .card {
+    background: var(--surface);
+    padding: clamp(20px, 5vw, 32px);
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+  }
+
+  .service-icon {
+    width: clamp(40px, 8vw, 50px);
+    height: clamp(40px, 8vw, 50px);
+    margin: 0 auto clamp(10px, 2vw, 15px) auto;
+  }
+
+  .service-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    color: var(--primary);
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .card:hover .service-icon svg {
+    color: var(--accent);
+    transform: scale(1.2);
+  }
+
+  .card h3 {
+    margin-bottom: 10px;
+    color: var(--primary);
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+  }
+
+  .card p {
+    color: #5a3e2b;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    line-height: 1.6;
+  }
+
+  /* ================= MENU / PORTFOLIO ================= */
+  .menu {
+    padding: clamp(60px, 10vw, 80px) clamp(20px, 5%, 5%);
+  }
+  .menu h2 { 
+    font-size: clamp(1.6rem, 4vw, 2rem); 
+    text-align:center; 
+    color:var(--primary); 
+    margin-bottom: clamp(30px, 6vw, 50px); 
+  }
+  .menu-grid {
+    display: grid;
+    gap: clamp(16px, 4vw, 24px);
+    grid-template-columns: repeat(auto-fit, minmax(clamp(180px, 40vw, 220px), 1fr));
+  }
+  .menu-item {
+    background: var(--surface);
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .menu-category {
+    display: flex;
+    align-items: center;
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    margin: clamp(15px, 4vw, 25px) clamp(15px, 4vw, 25px);
+    color: var(--primary);
+  }
+
+  .menu-content {
+    padding: 0 clamp(10px, 3vw, 15px) clamp(10px, 3vw, 15px);
+    text-align: left;
+  }
+
+  .menu-content h3 {
+    text-align: center;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+  }
+
+  .menu-price {
+    margin-top: 8px;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    color: var(--accent);
+  }
+
+  .menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12), 0 6px 10px rgba(0,0,0,0.08);
+  }
+
+  /* ================= CAFÉ EXPERIENCE ================= */
+  .cafe-intro-text {
+    max-width: 800px;
+    margin: clamp(40px, 8vw, 60px) auto clamp(20px, 4vw, 30px);
+    text-align: center;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    color: #5a3e2b;
+    line-height: 1.7;
+    font-weight: 500;
+    padding: 0 clamp(20px, 5%, 5%);
+  }
+
+  .cafe-experience {
+    margin-top: clamp(50px, 10vw, 70px);
+    padding: clamp(40px, 8vw, 50px) clamp(20px, 5%, 5%);
+    background: linear-gradient(120deg, var(--surface), var(--background));
+    border-radius: 20px;
+  }
+
+  .cafe-experience-inner {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 40vw, 220px), 1fr));
+    gap: clamp(20px, 5vw, 30px);
+  }
+
+  .experience-item {
+    text-align: center;
+    padding: clamp(20px, 5vw, 25px) clamp(15px, 4vw, 20px);
+    border-radius: 16px;
+    background: #fff;
+    border: 1px solid var(--border);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .experience-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+  }
+
+  .experience-icon {
+    font-size: clamp(24px, 6vw, 30px);
+    display: block;
+    margin-bottom: clamp(8px, 2vw, 12px);
+  }
+
+  .experience-item h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary);
+    margin-bottom: 6px;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+  }
+
+  .experience-item p {
+    font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+    color: #5a3e2b;
+  }
+
+  /* ================= FOOTER ================= */
+  footer {
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    background: #f7f3f0;
+  }
+
+  .footer-main {
+    display: flex;
+    justify-content: space-between;
+    gap: clamp(20px, 6vw, 40px);
+    max-width: 1100px;
+    margin: auto;
+    padding: clamp(30px, 8vw, 40px) clamp(20px, 5%, 5%);
+    flex-wrap: wrap;
+  }
+
+  .footer-left {
+    flex: 1;
+    min-width: clamp(250px, 45vw, 300px);
+  }
+
+  .footer-left h3 {
+    font-size: clamp(1.4rem, 3.5vw, 22px);
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #6f4e37;
+  }
+
+  .footer-left p {
+    font-size: clamp(0.85rem, 2.2vw, 14px);
+    margin: 4px 0;
+    color: #5a3e2b;
+  }
+
+  .footer-map {
+    width: 100%;
+    height: clamp(150px, 25vw, 200px);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  .footer-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .footer-right {
+    flex: 0 0 clamp(180px, 30vw, 220px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .follow-text {
+    font-size: clamp(0.95rem, 2.5vw, 16px);
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #6f4e37;
+    text-align: center;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: clamp(10px, 3vw, 15px);
+  }
+
+  .footer-social a {
+    width: clamp(38px, 8vw, 45px);
+    height: clamp(38px, 8vw, 45px);
+    border-radius: 50%;
+    background: #6f4e37;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+  }
+
+  .footer-social a:hover {
+    background: #c69c6d;
+    transform: scale(1.1);
+  }
+
+  .footer-social svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    font-size: clamp(0.8rem, 2vw, 13px);
+    margin-top: 25px;
+    padding: clamp(10px, 3vw, 12px) 0;
+    border-top: 1px solid #e6ded5;
+    color: #5a3e2b;
+  }
+
+  /* ================= STICKY ICON ================= */
+  .sticky-link {
+    position: fixed;
+    right: clamp(10px, 3vw, 20px);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 26px);
+    font-size: clamp(0.85rem, 2vw, 14px);
+    font-weight: 600;
+    letter-spacing: 0.25px;
+    text-decoration: none;
+    color: #0f172a;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    background-image:
+      linear-gradient(#ffffff, #ffffff),
+      linear-gradient(120deg, #2563eb, #6366f1, #0ea5e9, #2563eb);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    background-size: 100% 100%, 300% 300%;
+    animation: borderMove 6s linear infinite;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    white-space: nowrap;
+  }
+
+  .sticky-link:hover {
+    transform: translateY(-50%) translateX(6px);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+  }
+
+  @keyframes borderMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+  }
+
+  /* ================= RESPONSIVE BREAKPOINTS ================= */
+  
+  /* Large Desktop */
+  @media (min-width: 1200px) {
+    .hero { gap: 60px; }
+    .hero_content h1 { font-size: 3rem; }
+  }
+
+  /* Tablet Landscape */
+  @media (max-width: 1024px) {
+    .hero {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 30px;
+    }
+    .hero_rgt_img { order: -1; max-width: 350px; margin: 0 auto 20px; }
+    .hero_content { padding-right: 0; order: 0; }
+    
+    .footer-main { gap: 30px; }
+  }
+
+  /* Tablet Portrait */
+  @media (max-width: 768px) {
+    .hero {
+      padding: 50px clamp(20px, 8%, 5%);
+      gap: 25px;
+    }
+    
+    .services-grid,
+    .menu-grid,
+    .cafe-experience-inner {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    
+    .footer-main {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 30px;
+    }
+    
+    .footer-left, .footer-right {
+      max-width: 100%;
+    }
+    
+    .footer-right { order: -1; }
+    
+    .sticky-link {
+      bottom: 20px;
+      top: auto;
+      transform: none;
+      font-size: 0.9rem;
+      padding: 12px 20px;
+    }
+  }
+
+  /* Mobile Large */
+  @media (max-width: 576px) {
+    .services-grid,
+    .menu-grid,
+    .cafe-experience-inner {
+      grid-template-columns: 1fr;
+    }
+    
+    .menu-category {
+      font-size: 1.4rem;
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+    }
+    
+    .card { padding: 24px 20px; }
+    
+    .hero_content h1 { margin-bottom: 15px; }
+    
+    .footer-social {
+      justify-content: center;
+    }
+  }
+
+  /* Small Mobile */
+  @media (max-width: 360px) {
+    .hero, .services, .menu, .cafe-experience {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    
+    .sticky-link {
+      right: 15px;
+      bottom: 15px;
+      font-size: 0.8rem;
+      padding: 10px 16px;
+    }
+  }
+</style>
+
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero_content">
+    <h1>Welcome to Cafe Haven</h1>
+    <p>Enjoy the finest coffee blends in a cozy and relaxing atmosphere. Freshly brewed just for you.</p>
+  
+  </div>
+  <div class="hero_rgt_img"></div>
+</section>
+
+<a href="https://www.mujawartech.com"
+    class="sticky-link">
+    www.mujawartech.com
+</a>
+
+
+<!-- SERVICES -->
+<section class="services">
+  <h2>Our Services</h2>
+  <div class="services-grid">
+
+    <!-- Fresh Tea -->
+    <div class="card">
+      <div class="service-icon">
+        <!-- Tea Cup with Saucer and Steam -->
+        <svg viewBox="0 0 64 64">
+          <!-- Saucer -->
+          <ellipse cx="32" cy="48" rx="20" ry="4" fill="currentColor" opacity="0.3"/>
+          <!-- Cup -->
+          <path d="M22 36h20v8a4 4 0 0 1-4 4H26a4 4 0 0 1-4-4v-8z" fill="currentColor"/>
+          <!-- Steam -->
+          <path d="M30 32c0-4 4-6 4-10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M34 32c0-3 3-5 3-8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Fresh Coffee</h3>
+      <p>Premium Coffee-beans blends served hot with a perfect aroma.</p>
+    </div>
+
+    <!-- Bakery Items -->
+<div class="card">
+  <div class="service-icon">
+    <svg viewBox="0 0 64 64">
+      <!-- Cake base -->
+      <rect x="16" y="36" width="32" height="12" rx="2" fill="currentColor" opacity="0.9"/>
+      <!-- Cake layers -->
+      <rect x="18" y="30" width="28" height="6" rx="1" fill="currentColor" opacity="0.7"/>
+      <rect x="20" y="26" width="24" height="4" rx="1" fill="currentColor" opacity="0.5"/>
+      <!-- Frosting -->
+      <path d="M16 26c0-2 32-2 32 0v2H16v-2z" fill="#fff"/>
+      <!-- Cherry on top -->
+      <circle cx="32" cy="24" r="2" fill="#e74c3c"/>
+    </svg>
+  </div>
+  <h3>Bakery Items</h3>
+  <p>Delicious cakes, pastries, and freshly baked goods every day.</p>
+</div>
+
+
+
+    <!-- Café Experience -->
+<div class="card">
+  <div class="service-icon">
+    <svg viewBox="0 0 64 64" width="64" height="64">
+      <!-- Café base -->
+      <rect x="14" y="28" width="36" height="20" rx="2" fill="#e6ded5" stroke="#6f4e37" stroke-width="1"/>
+
+      <!-- Glass panels (with realistic panes) -->
+      <!-- Left window -->
+      <rect x="16" y="30" width="10" height="16" rx="1" fill="rgba(255,255,255,0.7)" stroke="#6f4e37" stroke-width="0.7"/>
+      <line x1="16" y1="38" x2="26" y2="38" stroke="#6f4e37" stroke-width="0.5"/> <!-- horizontal pane -->
+      <line x1="21" y1="30" x2="21" y2="46" stroke="#6f4e37" stroke-width="0.5"/> <!-- vertical pane -->
+
+      <!-- Center door -->
+      <rect x="29" y="30" width="6" height="18" rx="1" fill="rgba(255,255,255,0.7)" stroke="#6f4e37" stroke-width="0.8"/>
+      <line x1="29" y1="39" x2="35" y2="39" stroke="#6f4e37" stroke-width="0.5"/> <!-- horizontal pane -->
+      <line x1="32" y1="30" x2="32" y2="48" stroke="#6f4e37" stroke-width="0.5"/> <!-- vertical pane -->
+
+      <!-- Right window -->
+      <rect x="38" y="30" width="10" height="16" rx="1" fill="rgba(255,255,255,0.7)" stroke="#6f4e37" stroke-width="0.7"/>
+      <line x1="38" y1="38" x2="48" y2="38" stroke="#6f4e37" stroke-width="0.5"/> <!-- horizontal pane -->
+      <line x1="43" y1="30" x2="43" y2="46" stroke="#6f4e37" stroke-width="0.5"/> <!-- vertical pane -->
+
+      <!-- Minimalist awning -->
+      <path d="M14 28 q18 -8 36 0" fill="#6f4e37"/>
+      <path d="M14 28 q18 -8 36 0" fill="none" stroke="#5a3e2b" stroke-width="0.7"/>
+
+      <!-- Coffee cup sign on awning -->
+      <circle cx="32" cy="18" r="3" fill="#fff" stroke="#6f4e37" stroke-width="0.7"/>
+      <path d="M30.5 17.5 h3 a0.8 0.8 0 0 1 0 1.5 h-3z" fill="#6f4e37"/>
+      <path d="M31.5 16.5 c0-0.3 0.7-0.6 0.7 0" stroke="#6f4e37" stroke-width="0.3" fill="none"/>
+
+      <!-- Shadow under building -->
+      <ellipse cx="32" cy="52" rx="20" ry="2.5" fill="rgba(0,0,0,0.08)"/>
+    </svg>
+  </div>
+  <h3>Café Experience</h3>
+  <p>Relax in a sleek modern café with cozy seating, warm beverages, and a welcoming ambiance.</p>
+</div>
+
+</section>
+
+
+
+<!-- ================= MENU / PORTFOLIO ================= -->
+<section class="menu">
+  <h2>Our Menu</h2>
+
+  <!-- ================= COFFEE ================= -->
+  <h3 class="menu-category">☕ Coffee</h3>
+  <div class="menu-grid">
+    <div class="menu-item">
+      <img src="coffee.jpg" alt="Cappuccino">
+      <div class="menu-content">
+        <h3>Cappuccino</h3>
+        <p>Espresso with steamed milk and creamy foam.</p>
+        <p class="menu-price"><strong>$4.50</strong></p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="coffee.jpg" alt="Latte">
+      <div class="menu-content">
+        <h3>Latte</h3>
+        <p>Smooth espresso with steamed milk and light foam.</p>
+        <p class="menu-price"><strong>$4.00</strong></p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="coffee.jpg" alt="Espresso">
+      <div class="menu-content">
+        <h3>Espresso</h3>
+        <p>Strong and bold single shot of espresso.</p>
+        <p class="menu-price"><strong>$3.00</strong></p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="coffee.jpg" alt="Mocha">
+      <div class="menu-content">
+        <h3>Mocha</h3>
+        <p>Espresso infused with chocolate and steamed milk.</p>
+        <p class="menu-price"><strong>$4.80</strong></p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="coffee.jpg" alt="Americano">
+      <div class="menu-content">
+        <h3>Americano</h3>
+        <p>Espresso diluted with hot water for a smooth taste.</p>
+        <p class="menu-price"><strong>$3.50</strong></p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="coffee.jpg" alt="Macchiato">
+      <div class="menu-content">
+        <h3>Macchiato</h3>
+        <p>Espresso topped with a small dollop of milk foam.</p>
+        <p class="menu-price"><strong>$4.20</strong></p>
+      </div>
+    </div>
+  </div>
+
+ <br>
+
+  <!-- ================= TEA ================= -->
+  <h3 class="menu-category">🍵🍃Tea</h3>
+  <div class="menu-grid">
+    <div class="menu-item">
+      <img src="tea.jpg" alt="Black Tea">
+      <div class="menu-content">
+        <h3>Black Tea</h3>
+        <p>Classic rich black tea for a warm and refreshing taste.</p>
+        <p class="menu-price"><strong>$2.50</strong></p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="tea.jpg" alt="Green Tea">
+      <div class="menu-content">
+        <h3>Green Tea</h3>
+        <p>Healthy and aromatic green tea leaves brewed perfectly.</p>
+        <p class="menu-price"><strong>$3.00</strong></p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="tea.jpg" alt="Herbal Tea">
+      <div class="menu-content">
+        <h3>Herbal Tea</h3>
+        <p>Relaxing caffeine-free blends for calm and comfort.</p>
+        <p class="menu-price"><strong>$3.50</strong></p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="tea.jpg" alt="Iced Tea">
+      <div class="menu-content">
+        <h3>Iced Tea</h3>
+        <p>Refreshing cold tea with lemon and mint.</p>
+        <p class="menu-price"><strong>$3.80</strong></p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="tea.jpg" alt="Jaggery Tea">
+      <div class="menu-content">
+        <h3>Jaggery Tea</h3>
+        <p>Traditional tea sweetened naturally with jaggery.</p>
+        <p class="menu-price"><strong>$3.50</strong></p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="tea.jpg" alt="Special Cardamom Tea">
+      <div class="menu-content">
+        <h3>Special Cardamom Tea</h3>
+        <p>Aromatic tea infused with premium cardamom pods.</p>
+        <p class="menu-price"><strong>$4.00</strong></p>
+      </div>
+    </div>
+  </div>
+
+<br>
+
+  <!-- ================= BAKERY ================= -->
+  <h3 class="menu-category">🍰 Bakery</h3>
+  <div class="menu-grid">
+    <div class="menu-item">
+      <img src="bakery.jpg" alt="Croissant">
+      <div class="menu-content">
+        <h3>Croissant</h3>
+        <p>Flaky, buttery French croissant, freshly baked.</p>
+        <p class="menu-price"><strong>$2.80</strong></p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="bakery.jpg" alt="Cake Slice">
+      <div class="menu-content">
+        <h3>Cake Slice</h3>
+        <p>Delicious slices of chocolate or vanilla cake.</p>
+        <p class="menu-price"><strong>$4.00</strong></p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="bakery.jpg" alt="Muffin">
+      <div class="menu-content">
+        <h3>Muffin</h3>
+        <p>Soft and moist muffins, perfect with tea or coffee.</p>
+        <p class="menu-price"><strong>$3.00</strong></p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="bakery.jpg" alt="Fresh Bread">
+      <div class="menu-content">
+        <h3>Fresh Bread</h3>
+        <p>Daily baked artisan bread, perfect for sandwiches or snacks.</p>
+        <p class="menu-price"><strong>$3.50</strong></p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="bakery.jpg" alt="Pastry">
+      <div class="menu-content">
+        <h3>Pastry</h3>
+        <p>Sweet and savory pastries baked fresh every day.</p>
+        <p class="menu-price"><strong>$3.20</strong></p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="bakery.jpg" alt="Bagel">
+      <div class="menu-content">
+        <h3>Bagel</h3>
+        <p>Soft bagels with optional cream cheese or toppings.</p>
+        <p class="menu-price"><strong>$2.50</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CAFÉ EXPERIENCE STRIP ================= -->
+
+<section class="cafe-experience">
+
+
+
+<p class="cafe-intro-text">
+  Looking to relax, refresh, or simply unwind?Step into Cafe Haven and enjoy the perfect café experience.
+</p>
+
+  <div class="cafe-experience-inner">
+
+    <div class="experience-item">
+      <span class="experience-icon">📶</span>
+      <h4>Free High-Speed Wi-Fi</h4>
+      <p>Perfect for work, study, or casual browsing.</p>
+    </div>
+
+    <div class="experience-item">
+      <span class="experience-icon">🪑</span>
+      <h4>Comfortable Seating</h4>
+      <p>Relaxed indoor seating with a cozy café vibe.</p>
+    </div>
+
+    <div class="experience-item">
+      <span class="experience-icon">🎶</span>
+      <h4>Calm Music</h4>
+      <p>Soft background music for a peaceful experience.</p>
+    </div>
+
+    <div class="experience-item">
+      <span class="experience-icon">🌿</span>
+      <h4>Warm Ambience</h4>
+      <p>A modern café atmosphere to unwind and enjoy.</p>
+    </div>
+
+  </div>
+</section>
+
+
+ 
+
+<footer>
+  <div class="footer-main">
+    <!-- LEFT: Cafe Haven info + map -->
+    <div class="footer-left">
+      <h3>Cafe Haven</h3>
+      <p>📍 45 Brew Street, Downtown City, ZIP 123456</p>
+      <p>📞 +1 (555) 234-5678</p>
+      <p>✉️ hello@cafehaven-demo.com</p>
+      <p>🕒 Mon–Sun: 8:00 AM – 10:00 PM</p>
+      <div class="footer-map">
+        <iframe
+          src="https://maps.google.com/maps?q=New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <!-- RIGHT: Social media -->
+    <div class="footer-right">
+      <p class="follow-text">Follow us on social media</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2V9.5c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V11h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12Z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5a5 5 0 1 0 5 5 5 5 0 0 0-5-5Zm6.5-.9a1.1 1.1 0 1 0 1.1 1.1 1.1 1.1 0 0 0-1.1-1.1Z"/></svg>
+        </a>
+        <a href="#" aria-label="X">
+          <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.4 8.5L23 22h-6.4l-5-6.1L6 22H2l7.9-9.1L1 2h6.5l4.6 5.6L18.9 2Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- COPYRIGHT -->
+  <div class="footer-bottom">
+    &copy; 2026 Cafe Haven. Responsive and professional business website – Demo purpose only
+  </div>
+</footer>
+
+
+</body>
+</html>
